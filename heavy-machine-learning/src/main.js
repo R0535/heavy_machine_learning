@@ -3,6 +3,8 @@ import App from './App.vue'
 import firebase from "firebase"
 import { firestorePlugin } from "vuefire";
 import router from './router'
+import { Quasar } from 'quasar'
+import quasarUserOptions from './quasar-user-options'
 
 
 var config = {
@@ -28,7 +30,7 @@ export const storage = firebase.storage().ref('/images')
 //         App
 //     }
 // }).$mount("#app")
-let app = createApp(App)
+let app = createApp(App).use(Quasar, quasarUserOptions)
 app.component("App",App)
 app.use(router)
 app.use(firestorePlugin)

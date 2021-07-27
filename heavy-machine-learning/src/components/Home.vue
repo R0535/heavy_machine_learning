@@ -1,41 +1,89 @@
 <template>
-  <div class="home">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+<div >
+
+    <div class="row">
+      <div class="col-12">
+        <q-file v-model="model" label="Standard"  @change="processFile($event)"/>
+      </div>
+      <div class="col-12 ">
+    <q-btn color="white" text-color="black" label="Upload" @click="uploadFile"/>
+      </div>
+      <div class="col-12">
+        <q-separator />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        
+
+        <div class="q-pa-md row items-start q-gutter-md" v-for="image in images" v-bind:key="image.id">
+          <q-card class="my-card">
+            <img :src="image.url">
+
+          <q-card-section>
+            <div class="text-h6">{{image.name}}</div>
+            <div class="text-subtitle2">by Pepe</div>
+          </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          {{image.scorePromedio}}
+        </q-card-section>
+          </q-card>
+
+
+        </div>
+      </div>
+      <div class="col-12 col-md-auto">
+        .col-12 .col-md-auto (Variable width content)
+      </div>
+      <div class="col">
+        .col
+      </div>
+    </div>
+
   </div>
 </template>
 
+
+
+
+
+
 <script>
+import {firestore} from '@/main'
+import {storage} from '@/main'
+
 export default {
-  name: 'Home',
-  props: {
-    msg: String
+  data:()=>({
+    file:'',
+    images:[]
+  }),
+  methods:{
+    processFile:function(event){
+      this.file = event.target.files[0]
+    },
+    uploadFile:function(){
+      let name = (+new Date())+'-'+this.file.name
+      let metadata = {contentType: this.file.type}
+      storage.child(name).put(this.file,metadata).
+      then(snapshot => snapshot.ref.getDownloadURL()).
+      then(url => {
+        let image = {
+          url:url,
+          name:name,
+          createdAt:(+new Date()),
+          scorePromedio:0
+        }
+        firestore.collection('images').add(image)
+      })
+    }
   },
+  firestore(){
+    return {
+      images:firestore.collection("images")
+    }
+  }
 }
 </script>
 
