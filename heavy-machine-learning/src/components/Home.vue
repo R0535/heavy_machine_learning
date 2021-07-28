@@ -1,12 +1,12 @@
 <template>
 <v-container>
-  <v-layout>
-    <v-flex xs12 pl-2>
+  <v-layout >
+    <v-flex class ="xs12  pb-3">
       <input type="file" ref = "fileInput" id ="file"  @change="processFile($event)"/>
 
     </v-flex>
   </v-layout>
-  <v-layout xs12 pb-3>
+  <v-layout class = "xs12 pl-2 pb-3">
     <v-flex>
       <v-btn color="primary" @change="processFile($event)">Subir</v-btn>
     </v-flex>
@@ -18,10 +18,11 @@
         <v-layout row wrap>
           <v-flex xs12 sm6 lg3 v-for="image in images" v-bind:key = "image.id">
             <v-card>
-              <v-img class="white--text" heigth= "200px" :src = "image.url"></v-img>
+              <v-img class="white--text" height="200px" :src = "image.url"></v-img>
               <v-card-title>
                 <div>
                   <span class="grey--text">{{image.name}}</span>
+                  <br>
                   <v-chip>{{image.scorePromedio}}</v-chip>
                 </div>
               </v-card-title>

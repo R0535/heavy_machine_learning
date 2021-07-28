@@ -1,29 +1,34 @@
 <template>
-<div class="row">
-      <div class="col">
-        
-
-        <div class="q-pa-md row items-start q-gutter-md" v-for="image in images" v-bind:key="image.id">
-          <q-card class="my-card" style="width:16rem" >
-            <img :src="image.url">
-
-          <q-card-section>
-            <div class="text-h6">{{image.name}}</div>
-            <div class="text-subtitle2">by Pepe</div>
-          </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          {{image.scorePromedio}}
-        </q-card-section>
-        <q-card-section class="q-pt-none">
-
-        </q-card-section>
-          </q-card>
-
-
-        </div>
-      </div>
-    </div>
+<v-container>
+  <v-layout row wrap align-center>
+    <v-flex class="xs12 sm6 md6 lg4">
+      <v-card>
+        <v-img class="white--text " height = "200px"
+        :src = "image.url"></v-img>
+        <v-card-title>
+                <div>
+                  <span class="grey--text">{{image.name}}</span>
+                  <br>
+                  <v-chip>{{image.scorePromedio}}</v-chip>
+                </div>
+              </v-card-title>
+              <v-card-actions>
+                <v-btn flat @click="goToImageDetail(image.id)">Explorar</v-btn>
+              </v-card-actions>
+      </v-card>
+    </v-flex>
+  </v-layout>
+  <v-layout>
+    <v-flex  class="xs12 ">
+      <v-text-field label= "¿Que  arece esta foto?" v-model="comentario"></v-text-field>  <!-- TEXT FIELD CTA-->
+      <v-layout>
+        <v-flex class= "xs12 pt5">
+          <h1>Otros comentarios</h1>
+        </v-flex>
+      </v-layout>
+    </v-flex>
+  </v-layout>
+</v-container>
 </template>
 
 <script>
