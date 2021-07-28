@@ -1,112 +1,45 @@
 <template>
-  <div class="q-pa-md">
-    <q-bar>
-      <div class="cursor-pointer non-selectable">
-        File
-        <q-menu>
-          <q-list dense style="min-width: 100px">
-            <q-item clickable v-close-popup>
-              <q-item-section>Open...</q-item-section>
-            </q-item>
-            <q-item clickable v-close-popup>
-              <q-item-section>New</q-item-section>
-            </q-item>
+  <v-app>
+    <v-main>
+      
 
-            <q-separator />
 
-            <q-item clickable>
-              <q-item-section>Preferences</q-item-section>
-              <q-item-section side>
-                <q-icon name="keyboard_arrow_right" />
-              </q-item-section>
+    <v-app-bar density="compact">
+      <v-app-bar-title>AI Abstract Vision</v-app-bar-title>
+  
+      <v-spacer></v-spacer>
+  
+      <v-btn text>Developer</v-btn>
+  
+      <v-btn class="mr-3" text>Abstract</v-btn>
+  
+      <v-divider inset vertical></v-divider>
+  
+      <v-btn
+        class="mr-4 ml-5"
+        color="primary"
+        plain
+      >
+        <v-icon left icon="mdi-handshake-outline"></v-icon>
+  
+        <span>Jose Hernandez</span>
+      </v-btn>
+    </v-app-bar>
 
-              <q-menu anchor="top end" self="top start">
-                <q-list>
-                  <q-item
-                    v-for="n in 3"
-                    :key="n"
-                    dense
-                    clickable
-                  >
-                    <q-item-section>Submenu Label</q-item-section>
-                    <q-item-section side>
-                      <q-icon name="keyboard_arrow_right" />
-                    </q-item-section>
-                    <q-menu auto-close anchor="top end" self="top start">
-                      <q-list>
-                        <q-item
-                          v-for="n in 3"
-                          :key="n"
-                          dense
-                          clickable
-                        >
-                          <q-item-section>3rd level Label</q-item-section>
-                        </q-item>
-                      </q-list>
-                    </q-menu>
-                  </q-item>
-                </q-list>
-              </q-menu>
-            </q-item>
 
-            <q-separator />
-
-            <q-item clickable v-close-popup>
-              <q-item-section>Quit</q-item-section>
-            </q-item>
-          </q-list>
-        </q-menu>
-      </div>
-
-      <div class="q-ml-md cursor-pointer non-selectable">
-        Edit
-        <q-menu auto-close>
-          <q-list dense style="min-width: 100px">
-            <q-item clickable>
-              <q-item-section>Cut</q-item-section>
-            </q-item>
-            <q-item clickable>
-              <q-item-section>Copy</q-item-section>
-            </q-item>
-            <q-item clickable>
-              <q-item-section>Paste</q-item-section>
-            </q-item>
-            <q-separator />
-            <q-item clickable>
-              <q-item-section>Select All</q-item-section>
-            </q-item>
-          </q-list>
-        </q-menu>
-      </div>
-
-      <q-space />
-
-      <q-btn dense flat icon="minimize" />
-      <q-btn dense flat icon="crop_square" />
-      <q-btn dense flat icon="close" />
-    </q-bar>
-  </div>
-    <router-view>
-
-    </router-view>
-
+      <router-view/>
+      
+    </v-main>
+  </v-app>
 </template>
 
 <script>
+
 export default {
   name: 'App',
-  data(){
-    return{}
-  }
+
+  data: () => ({
+    //
+  }),
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2570BB;
-}
-</style>

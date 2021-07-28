@@ -1,10 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import router from './router'
 import firebase from "firebase"
 import { firestorePlugin } from "vuefire";
-import router from './router'
-import { Quasar } from 'quasar'
-import quasarUserOptions from './quasar-user-options'
+import vuetify from '@/plugins/vuetify'
 
 
 var config = {
@@ -21,19 +20,8 @@ var config = {
 const firebaseApp = firebase.initializeApp(config)
 export const firestore = firebaseApp.firestore()
 export const storage = firebase.storage().ref('/images')
-
-//Vue.config.productionTip = false;
-// new Vue({
-//     render:h=>h(App),
-//     router,
-//     components:{
-//         App
-//     }
-// }).$mount("#app")
-let app = createApp(App).use(Quasar, quasarUserOptions)
-app.component("App",App)
+const app = createApp(App)
 app.use(router)
+app.use(vuetify)
 app.use(firestorePlugin)
 app.mount('#app')
-
-

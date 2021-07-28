@@ -1,48 +1,41 @@
 <template>
-<div >
+<v-container>
+  <v-layout>
+    <v-flex xs12 pl-2>
+      <input type="file" ref = "fileInput" id ="file"  @change="processFile($event)"/>
 
-    <div class="row">
-      <div class="col-12">
-        <q-file v-model="model" label="Standard"  @change="processFile($event)"/>
-      </div>
-      <div class="col-12 ">
-    <q-btn color="white" text-color="black" label="Upload" @click="uploadFile"/>
-      </div>
-      <div class="col-12">
-        <q-separator />
-      </div>
-    </div>
+    </v-flex>
+  </v-layout>
+  <v-layout xs12 pb-3>
+    <v-flex>
+      <v-btn color="primary" @change="processFile($event)">Subir</v-btn>
+    </v-flex>
+  </v-layout>
+  <v-divider></v-divider>
+  <v-layout row wrap align-center>
+    <v-flex xs12>
+      <v-container fluid class="pl-0 pr-0">
+        <v-layout row wrap>
+          <v-flex xs12 sm6 lg3 v-for="image in images" v-bind:key = "image.id">
+            <v-card>
+              <v-img class="white--text" heigth= "200px" :src = "image.url"></v-img>
+              <v-card-title>
+                <div>
+                  <span class="grey--text">{{image.name}}</span>
+                  <v-chip>{{image.scorePromedio}}</v-chip>
+                </div>
+              </v-card-title>
+              <v-card-actions>
+                <v-btn flat @click="goToImageDetail(image.id)">Explorar</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
 
-    <div class="row">
-      <div class="col">
-        
-
-        <div class="q-pa-md row items-start q-gutter-md" v-for="image in images" v-bind:key="image.id">
-          <q-card class="my-card">
-            <img :src="image.url">
-
-          <q-card-section>
-            <div class="text-h6">{{image.name}}</div>
-            <div class="text-subtitle2">by Pepe</div>
-          </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          {{image.scorePromedio}}
-        </q-card-section>
-          </q-card>
-
-
-        </div>
-      </div>
-      <div class="col-12 col-md-auto">
-        .col-12 .col-md-auto (Variable width content)
-      </div>
-      <div class="col">
-        .col
-      </div>
-    </div>
-
-  </div>
+    </v-flex>
+  </v-layout>
+</v-container>
 </template>
 
 
@@ -57,7 +50,7 @@ import {storage} from '@/main'
 export default {
   data:()=>({
     file:'',
-    images:[]
+    images:[],
   }),
   methods:{
     processFile:function(event){
@@ -77,13 +70,16 @@ export default {
         }
         firestore.collection('images').add(image)
       })
-    }
+    },
+    goToImageDetail: function(id){
+      this.$router.push({path:`/image/${id}`})
+    },
   },
   firestore(){
     return {
       images:firestore.collection("images")
     }
-  }
+  },
 }
 </script>
 

@@ -5,20 +5,24 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "dev": "vue-cli-service"
   },
   "dependencies": {
+    "@mdi/font": "5.9.55",
     "@quasar/extras": "^1.0.0",
     "core-js": "^3.6.5",
     "firebase": "^8.8.0-202162022140",
     "quasar": "^2.0.0",
+    "roboto-fontface": "*",
     "vue": "^3.1.5",
     "vue-router": "^4.0.10",
-    "vuefire": "^3.0.0-alpha.2"
+    "vuefire": "^3.0.0-alpha.2",
+    "vuetify": "^3.0.0-alpha.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "^3.1.1",
+    "@vue/cli-plugin-eslint": "~4.5.13",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-service": "^4.5.13",
     "@vue/compiler-sfc": "^3.0.0",

@@ -1,15 +1,22 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/components/Home'
+import App from '@/App'
+import ImageDetail from '@/components/ImageDetail'
 const routes = [
   {
     path: '/',
     name: '/',
-    component: Home
+    component: App
   },
   {
     path: '/home',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/image/:id',
+    name: 'ImageDetail',
+    component: ImageDetail
   }
 ]
 
