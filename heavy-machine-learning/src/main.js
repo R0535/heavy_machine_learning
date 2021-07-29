@@ -6,6 +6,7 @@ import { firestorePlugin } from "vuefire";
 import vuetify from '@/plugins/vuetify'
 
 
+
 var config = {
     apiKey: "AIzaSyDY9Kk7jL7VUbsGa2pBV2fXvxfMGD_T0w8",
     authDomain: "heavy-machine-learning.firebaseapp.com",

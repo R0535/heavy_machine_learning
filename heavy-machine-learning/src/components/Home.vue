@@ -1,22 +1,22 @@
 <template>
 <v-container>
   <v-layout >
-    <v-flex class ="xs12  pb-3">
-      <input type="file" ref = "fileInput" id ="file"  @change="processFile($event)"/>
+    <div class ="xs12  pb-3">
+      <input type="file" ref = "fileInput" id ="file"  @change="processFile($event)">
 
-    </v-flex>
+    </div>
   </v-layout>
   <v-layout class = "xs12 pl-2 pb-3">
-    <v-flex>
+    <div>
       <v-btn color="primary" @change="processFile($event)">Subir</v-btn>
-    </v-flex>
+    </div>
   </v-layout>
   <v-divider></v-divider>
   <v-layout row wrap align-center>
-    <v-flex xs12>
+    <div>
       <v-container fluid class="pl-0 pr-0">
         <v-layout row wrap>
-          <v-flex xs12 sm6 lg3 v-for="image in images" v-bind:key = "image.id">
+          <div v-for="image in images" v-bind:key = "image.id">
             <v-card>
               <v-img class="white--text" height="200px" :src = "image.url"></v-img>
               <v-card-title>
@@ -30,11 +30,11 @@
                 <v-btn flat @click="goToImageDetail(image.id)">Explorar</v-btn>
               </v-card-actions>
             </v-card>
-          </v-flex>
+          </div>
         </v-layout>
       </v-container>
 
-    </v-flex>
+    </div>
   </v-layout>
 </v-container>
 </template>
