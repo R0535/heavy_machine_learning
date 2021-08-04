@@ -17,6 +17,7 @@
     "quasar": "^2.0.0",
     "roboto-fontface": "*",
     "vue": "^3.1.5",
+    "vue-axios": "^3.2.5",
     "vue-router": "^4.0.10",
     "vuefire": "^3.0.0-alpha.2",
     "vuetify": "^3.0.0-alpha.0"

@@ -4,8 +4,9 @@ import router from './router'
 import firebase from "firebase"
 import { firestorePlugin } from "vuefire";
 import vuetify from '@/plugins/vuetify'
-
-
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import key from "@/KeyValues/index"
 
 var config = {
     apiKey: "AIzaSyDY9Kk7jL7VUbsGa2pBV2fXvxfMGD_T0w8",
@@ -20,9 +21,11 @@ var config = {
 
 const firebaseApp = firebase.initializeApp(config)
 export const firestore = firebaseApp.firestore()
+export const apiKey = key.key
 export const storage = firebase.storage().ref('/images')
 const app = createApp(App)
 app.use(router)
 app.use(vuetify)
+app.use(VueAxios, axios)
 app.use(firestorePlugin)
 app.mount('#app')
