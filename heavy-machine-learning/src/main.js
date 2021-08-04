@@ -9,7 +9,7 @@ import VueAxios from 'vue-axios'
 import key from "@/KeyValues/index"
 
 var config = {
-    apiKey: "AIzaSyDY9Kk7jL7VUbsGa2pBV2fXvxfMGD_T0w8",
+    apiKey: key,
     authDomain: "heavy-machine-learning.firebaseapp.com",
     databaseURL: "https://heavy-machine-learning-default-rtdb.firebaseio.com",
     projectId: "heavy-machine-learning",
